@@ -1,0 +1,36 @@
+Below is a summary of the user's purchase history and the current product review. Please read all the information carefully before making your inference.
+
+User Profile:
+- Total purchases: 20
+- Average rating given by user: 4.6
+- Rating distribution given by user: {1: 0.0, 2: 0.0, 3: 0.05, 4: 0.3, 5: 0.65}
+- Favorite category: Toys & Games
+- First purchase: 2019-06-03 18:18:16.323
+- Last purchase: 2022-06-16 09:13:30.836
+- Survival time: 1108 days 14:55:14.513000
+- Median price of purchases: $23.485
+- Price distribution: {price_tier_distribution}
+- Preferred Item Quality: 4.6/5.0
+
+Current Purchase:
+- Item name: "Extra Deep Pocket Sheets - 6 Piece Sheet Set - Queen Sheets Deep Pocket- Extra Deep Pocket Queen Sheets - Deep Fitted Sheet Set - Extra Deep"
+- Categories: Amazon Home - ['Home & Kitchen' 'Bedding' 'Sheets & Pillowcases'
+'Sheet & Pillowcase Sets']
+- Item average rating ({rating_number} reviews): {average_rating}
+- Item price: $39.99
+- Item brand: CGK Unlimited
+- Rating given by user: 4.5
+- Rating time: 2019-06-03 18:18:16.323
+- Review title: "Deep"
+- Review text: "I've only had these sheets less than a week, but so far I like them very much. I ordered another set. Would obviously recommend"
+
+Task:
+1. Based on Maslow's Hierarchy of Needs, determine **which level of need** this purchase most likely satisfies.
+   (Options: {'Physiological', 'Safety', 'Love/Belonging', 'Esteem', 'Self-Actualization'})
+2. Assign a **confidence rating** from 1 (very low) to 5 (very high).
+3. If there is **not enough information** to be certain, add a brief **additional comment** explaining any uncertainties or suggesting what further data would help.
+
+**Output** (each on its own line):
+Need: <Need>
+Confidence: <Confidence (1–5)>
+Comments: <Additional comments or leave blank>
