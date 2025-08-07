@@ -1,0 +1,39 @@
+Below is a summary of the user's purchase history and the current product review. Please read all the information carefully before making your inference.
+
+User Profile:
+- Total purchases: {total_purchases}
+- Average rating given by user: {rating_mean}
+- Rating distribution given by user: {rating_distribution}
+- Favorite category: {favorite_category}
+- Distribution of repeat purchases by category: {repeat_categories_distribution}
+- First purchase: {first_purchase}
+- Last purchase: {last_purchase}
+- Survival time: {survival_time}
+- Average price of purchases: {price_mean}
+- Median price of purchases: {price_median}
+- Price distribution: {price_tier_distribution}
+- Item quality preference: {item_quality_preference_mean}
+- Item popularity preference (z-score): {popular_item_preference_z_score}
+
+Current Purchase:
+- Item name: "{title_item}"
+- Categories: {main_category} - {categories}
+- Item average rating ({rating_number} reviews): {average_rating}
+- Item price: {price}
+- Item brand: {store}
+- Rating given by user: {rating}
+- Rating time: {timestamp}
+- Review title: "{title_review}"
+- Review text:
+{text}
+
+Task:
+1. Based on Maslow's Hierarchy of Needs, determine **which level of need** this purchase most likely satisfies.
+   (Options: {labels})
+2. Assign a **confidence rating** from 1 (very low) to 5 (very high).
+3. If there is **not enough information** to be certain, add a brief **additional comment** explaining any uncertainties or suggesting what further data would help.
+
+**Output** (each on its own line):
+Need: <Need>
+Confidence: <Confidence (1–5)>
+Comments: <Additional comments or leave blank>

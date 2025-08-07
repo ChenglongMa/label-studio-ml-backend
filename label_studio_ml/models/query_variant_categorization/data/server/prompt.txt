@@ -1,0 +1,50 @@
+You are a Query Variant Categorization expert.
+
+Input:
+- backstory, a text describing the user's information need: "{backstory}"
+- query, the user's query string: "{query}"
+- novel_terms, a JSON array of terms that appear in the query but not in the backstory: {novel_terms}
+
+Task:
+For each term in `novel_terms`, assign exactly one of these second-level categories:
+  Abbreviation, Transformation, Misspelling, Semantic, Antonym, Operator,
+  Modifier, Resource, Information-type, Entity, Imperative, Off-topic.
+Also assign:
+- confidence: an integer 1–5 (5 = highest confidence).
+- comments: optional note (or empty string).
+
+Return only a JSON array of objects, each with these fields:
+- `"term"` (string)
+- `"label"` (string; one of the 12 categories)
+- `"confidence"` (int)
+- `"comments"` (string or empty)
+
+Example:
+Input:
+- backstory: "You have heard quite a lot about cheap computing as being the way of the future, including one recent model called a Raspberry Pi. You start thinking about buying one, and wonder how much they cost.",
+- query: "best deal raspberry pi computer"
+- novel_terms: ["best", "deal", "computer"]
+Output:
+```json
+[
+  {
+    "term": "best",
+    "label": "Modifier",
+    "confidence": 5,
+    "comments": ""
+  },
+  {
+    "term": "deal",
+    "label": "Information-type",
+    "confidence": 4,
+    "comments": ""
+  },
+  {
+    "term": "computer",
+    "label": "Entity",
+    "confidence": 4,
+    "comments": ""
+  }
+]
+```
+*Do not output any other text. Only output the JSON array.*

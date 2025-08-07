@@ -1,0 +1,68 @@
+Input:
+- A **backstory** string describing an information need and context: {backstory}
+- A **query** string that is a user-generated question or request for information: {query}
+- A list of **novel terms** that appear in the query but do not appear in the backstory. These terms may include new concepts, modifications of existing concepts, or other relevant terms that reflect the user's understanding and information needs: {novel_terms}
+
+Task:
+1. Read the backstory and the query carefully. Understand how human generate queries based on backstories.
+2. Analyze the novel terms in the query, and understand their role in the context of the backstory.
+3. Understand the definition of term variation categories of the taxonomy:
+   - **Modification**: Refers to the substitution of terms from the backstory lexicon with equivalent terms from the user lexicon, aimed at adapting the context and relevance of the search query while maintaining the original need.
+      - Categories:
+        - **Abbreviation**: An abbreviation modification between a backstory lexicon, and a user lexicon, e.g., "info" for "information", "dr" for "doctor".
+        - **Transformation**: Modifications where a backstory lexicon undergoes structural or grammatical changes, yet preserves its core meaning, e.g., Morphological Transformation like "history" to "historical", or Compound Transformation like "health care" to "healthcare".
+        - **Misspelling**: An incorrect spelling of a term.
+        - **Semantic**: A modification that has a semantic relation via synonym, generalization or specialization; e.g., "movie" for "film", "get" for "obtain".
+        - **Antonym**: A term that has an opposite meaning.
+        - **Operator**: A term or punctuation character that indicates a logical operation (e.g., or, /, and, +).
+   - **Enrichment**: Refers to the incorporation of additional terms from the user lexicon to refine, expand, or elaborate on the search query, aimed at retrieving specific information needs.
+      - Categories:
+        - **Modifier**: A novel term functions as an adjective, providing specific details related to a vocabulary term in the backstory, e.g., time, places, locations, and object types.
+        - **Resource**: A term that refers to a source of information or material, e.g., "wiki", "amazon".
+        - **Information-type**: A term refers to obtaining either a property of the information itself (e.g., "fact", "definition"), the presentation style of the information (e.g., "list"), the type of document (e.g., "review"), serves the purpose of seeking advice (e.g., "suggestions"), or multimedia formats (e.g., "music").
+        - **Entity**: A novel query term is used to seek additional information relevant to the backstory topic, e.g., details related to humans and objects (e.g., "george", "cafeteria"), location (e.g., "clinic", "city", "country"), quantity (e.g., "numbers", "amount", or "currencies"), linguistic (e.g., "translation", "english", or "presidenciales"), and temporal terms (e.g., "dates", "times").
+        - **Imperative**: A term that indicates an action or command, e.g., "find", "search", "show", "give".
+        - **Off-topic**: A term that is not relevant to the backstory.
+5. Classify each novel term into one of the categories above, based on its role in the context of the backstory and query.
+   - If a term modifies a backstory concept, classify it into one of the **Modification** categories.
+   - If a term adds new information, classify it into one of the **Enrichment** categories.
+   - Assign a confidence score to each classification, where 5 indicates high confidence and 1 indicates low confidence.
+   - If a term does not fit into any of the categories, classify it as "Other" with a confidence score of 1.
+   - If a term is not novel, classify it as "Non-novel" with a confidence score of 5.
+   - If there is not enough information to classify a term, add a brief **additional comment** explaining any uncertainties or suggesting what further data would help.
+6. Return only a JSON array of objects, each with these fields:
+- `"term"` (string)
+- `"label"` (string; one of the 12 categories)
+- `"confidence"` (int; 1–5, 5 = highest confidence)
+- `"comments"` (string; optional, can be empty)
+
+Do not output any other text.
+
+Example:
+Input:
+- backstory: "You have heard quite a lot about cheap computing as being the way of the future, including one recent model called a Raspberry Pi. You start thinking about buying one, and wonder how much they cost.",
+- query: "best deal raspberry pi computer"
+- novel_terms: ["best", "deal", "computer"]
+Output:
+```json
+[
+  {
+    "term": "best",
+    "label": "Modifier",
+    "confidence": 5,
+    "comments": ""
+  },
+  {
+    "term": "deal",
+    "label": "Information-type",
+    "confidence": 4,
+    "comments": ""
+  },
+  {
+    "term": "computer",
+    "label": "Entity",
+    "confidence": 4,
+    "comments": ""
+  }
+]
+```
